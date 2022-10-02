@@ -4,8 +4,6 @@
 #include "Output.h"
 #include "GetList.h"
 
-#define ENUM_TO_STR(ENUM) std::string(#ENUM)
-
 
 enum class InputType
 {
@@ -69,6 +67,7 @@ int main()
 		int wishHighestFloor = 0;
 		int wishLowestFloor = 0;
 		double wishSpace = 0;
+		std::string listType;
 
 		ListType var = static_cast<ListType>(AscUserMenu());
 		switch (var)
@@ -76,6 +75,7 @@ int main()
 		case ListType::NumberOfRooms:
 			std::cout << "¬ведите количество комнат:";
 			wishNumberOfRooms = CheckIntValue();
+			listType = " вартиры с " + std::to_string(wishNumberOfRooms) + " комнатамиb\n";
 			endList = GetListWithSetsNumberOfRooms(array, count, wishNumberOfRooms, endSize);
 			break;
 
@@ -89,12 +89,15 @@ int main()
 			std::cout << "¬ведите нижнюю границу этажа :";
 			wishLowestFloor = CheckIntValue();
 
+			listType = " вартиры с " + std::to_string(wishNumberOfRooms) + " комнатами, наход€щиес€ между " + std::to_string(wishLowestFloor)+ "и" + std::to_string(wishHighestFloor) + " этажами \n";
+
 			endList = GetListWithSetsNumberOfRoomsNFloorInterval(array, count, wishNumberOfRooms, wishHighestFloor, wishLowestFloor, endSize);
 			break;
 
 		case ListType::Space:
 			std::cout << "¬ведите минимальную площадь :";
 			wishSpace = CheckDoubleValue();
+			listType = " вартиры площадь которых превышвет " + std::to_string(wishSpace) + " \n";
 			endList = GetListWithSpaceExceedingThen(array, count, wishSpace, endSize);
 			break;
 		}
@@ -104,10 +107,10 @@ int main()
 		switch (outputVar)
 		{
 		case InputType::Console:
-			ConsoleOutput(array, ENUM_TO_STR(var), endSize);
+			ConsoleOutput(array,listType, endSize);
 			break;
 		case InputType::File:
-			FileOutput(array, ENUM_TO_STR(var), endSize);
+			FileOutput(array,listType, endSize);
 			break;
 		}
 

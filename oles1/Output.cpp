@@ -41,6 +41,8 @@ void InitialFileOutput(Flat* array, int size )
 
 void ConsoleOutput(Flat* array, std::string var, int endSize)
 {
+
+	std::cout << var;
 	for (int i = 0; i < endSize; i++)
 	{
 		std::cout << "Flat #" << i + 1 << std::endl;

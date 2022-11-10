@@ -48,6 +48,7 @@ Flat* FileInput()
 		catch (const std::exception)
 		{
 			std::cout <<  "Eror.Try again ." << std::endl;
+			continue;
 
 		}
 
